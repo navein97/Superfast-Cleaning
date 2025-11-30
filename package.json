@@ -1,0 +1,12 @@
+{
+  "name": "superfast-cleaning",
+  "version": "1.0.0",
+  "description": "Superfast Cleaning Services landing page",
+  "private": true,
+  "scripts": {
+    "dev": "live-server --open=./index.html --port=5500"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
+}

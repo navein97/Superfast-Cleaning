@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="doc-title">سوبرفاست لخدمات التنظيف | الكويت</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Cairo (Arabic) & Inter (English Fallback) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        body {
+            font-family: 'Cairo', 'Inter', sans-serif; /* Prioritize Cairo for Arabic */
+            background-color: #f0f4f8;
+            overflow-x: hidden;
+        }
+
+        /* Abstract Premium Background */
+        .ambient-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            background: 
+                radial-gradient(at 0% 0%, hsla(210,100%,76%,1) 0, transparent 50%), 
+                radial-gradient(at 100% 0%, hsla(190,100%,70%,1) 0, transparent 50%), 
+                radial-gradient(at 100% 100%, hsla(210,100%,86%,1) 0, transparent 50%), 
+                radial-gradient(at 0% 100%, hsla(190,100%,70%,1) 0, transparent 50%);
+            background-size: 200% 200%;
+            animation: gradientMove 15s ease infinite;
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50% }
+            50% { background-position: 100% 50% }
+            100% { background-position: 0% 50% }
+        }
+
+        /* iOS Glass Effect */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+        }
+
+        .glass-card-hover {
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        .glass-card-hover:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.85);
+            box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.15);
+        }
+
+        /* Image Hover Zoom */
+        .img-zoom-container {
+            overflow: hidden;
+        }
+        .img-zoom-container img {
+            transition: transform 0.6s ease;
+        }
+        .img-zoom-container:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom Scrollbar for Webkit */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body dir="rtl" class="text-slate-800 antialiased selection:bg-blue-200 selection:text-blue-900">
+
+    <!-- Background Layer -->
+    <div class="ambient-bg"></div>
+
+    <!-- Sticky Navigation (iOS Style) -->
+    <nav class="fixed top-0 w-full z-50 px-4 py-4">
+        <div class="glass-panel max-w-4xl mx-auto rounded-full px-4 py-3 flex justify-between items-center">
+            
+            <!-- Logo/Title -->
+            <div class="flex flex-col leading-tight cursor-pointer" onclick="window.scrollTo(0,0)">
+                <span id="nav-title" class="font-bold text-lg tracking-tight text-slate-900">سوبرفاست</span>
+                <span id="nav-subtitle" class="text-[10px] text-slate-500 uppercase tracking-widest font-semibold">لخدمات التنظيف SUPERFAST</span>
+            </div>
+            
+            <!-- Language and WhatsApp CTAs -->
+            <div class="flex items-center gap-3">
+                 <!-- Language Toggle Button -->
+                <button onclick="toggleLanguage()" id="lang-toggle-btn" 
+                        class="bg-white/70 text-slate-900 px-3 py-1.5 rounded-full text-xs font-bold hover:bg-white transition-colors border border-slate-200">
+                    English
+                </button>
+                
+                <!-- WhatsApp CTA in Nav -->
+                <a href="https://wa.me/96590900192?text=مرحباً،%20أحتاج%20إلى%20خدمات%20تنظيف%20عامة." 
+                   class="bg-black text-white px-5 py-2 rounded-full text-sm font-medium hover:bg-slate-800 transition-colors flex items-center gap-2">
+                    <span id="nav-whatsapp-btn">واتساب</span>
+                    <i data-lucide="message-circle" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Wrapper -->
+    <main class="pt-32 pb-20 px-4 sm:px-6">
+        
+        <!-- Hero Section -->
+        <div class="max-w-4xl mx-auto text-center mb-20 fade-in">
+            <div class="inline-block px-4 py-1.5 rounded-full bg-white/40 border border-white/50 backdrop-blur-sm mb-6 animate-pulse">
+                <span id="tagline" class="text-xs font-bold text-blue-900 tracking-wide uppercase">مفتوح 24/7 في مدينة الكويت</span>
+            </div>
+            
+            <h1 class="text-5xl sm:text-7xl font-extrabold tracking-tighter mb-4 text-slate-900">
+                <span id="hero-title-1">مساحات نقية.</span><br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500" id="hero-title-2">جهد صفري.</span>
+            </h1>
+            
+            <p id="hero-subtitle-1" class="text-xl sm:text-2xl text-slate-600 font-light mb-2 max-w-2xl mx-auto">
+                شركة سوبرفاست لخدمات التنظيف العام للمباني
+            </p>
+            <p id="hero-subtitle-2" class="text-slate-500 mb-10 max-w-xl mx-auto">
+                خدمات تنظيف منازل ممتازة مقدمة بسرعة ودقة فائقة. 
+            </p>
+
+            <!-- Book Now CTA (WhatsApp) -->
+            <a href="https://wa.me/96590900192?text=أرغب%20في%20حجز%20خدمة%20تنظيف%20منزلي%20عاجلة." 
+               class="inline-flex items-center justify-center gap-3 bg-blue-600 hover:bg-blue-700 text-white text-lg font-semibold py-4 px-8 rounded-full shadow-lg shadow-blue-500/30 transition-all hover:scale-105 active:scale-95 w-full sm:w-auto">
+                <span id="hero-book-btn">احجز الآن عبر واتساب</span>
+                <i data-lucide="arrow-left" class="w-5 h-5 rtl:rotate-180"></i>
+            </a>
+        </div>
+
+        <!-- Why Choose Us Section -->
+        <div class="max-w-4xl mx-auto mb-20">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Card 1 -->
+                <div class="glass-panel p-6 rounded-3xl text-center">
+                    <div class="w-12 h-12 bg-blue-50 mx-auto rounded-full flex items-center justify-center text-blue-600 mb-4">
+                        <i data-lucide="clock" class="w-6 h-6"></i>
+                    </div>
+                    <h3 id="section-why-title1" class="font-bold text-slate-900 mb-2">متوفر 24/7</h3>
+                    <p id="section-why-desc1" class="text-sm text-slate-500">نعمل وفق جدولك، ليلاً ونهاراً في الكويت.</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="glass-panel p-6 rounded-3xl text-center">
+                    <div class="w-12 h-12 bg-blue-50 mx-auto rounded-full flex items-center justify-center text-blue-600 mb-4">
+                        <i data-lucide="shield-check" class="w-6 h-6"></i>
+                    </div>
+                    <h3 id="section-why-title2" class="font-bold text-slate-900 mb-2">طاقم عمل موثوق</h3>
+                    <p id="section-why-desc2" class="text-sm text-slate-500">متخصصون مدربون وذوو كفاءة عالية.</p>
+                </div>
+                <!-- Card 3 -->
+                <div class="glass-panel p-6 rounded-3xl text-center">
+                    <div class="w-12 h-12 bg-blue-50 mx-auto rounded-full flex items-center justify-center text-blue-600 mb-4">
+                        <i data-lucide="zap" class="w-6 h-6"></i>
+                    </div>
+                    <h3 id="section-why-title3" class="font-bold text-slate-900 mb-2">خدمة فائقة السرعة</h3>
+                    <p id="section-why-desc3" class="text-sm text-slate-500">الحجز في نفس اليوم متاح عبر الواتساب.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Services Grid with Images (Actual Images Applied) -->
+        <div class="max-w-4xl mx-auto mb-20">
+            <div class="flex items-center justify-start mb-8 px-2">
+                <h2 id="section-services-main-title" class="text-2xl font-bold text-slate-900">خدماتنا الممتازة</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                
+                <!-- Service 1: Deep House Cleaning -->
+                <div class="glass-panel glass-card-hover rounded-3xl cursor-pointer group overflow-hidden" onclick="window.location.href='https://wa.me/96590900192?text=استفسار%20حول%20خدمة%20التنظيف%20العميق%20للمنزل'">
+                    <div class="img-zoom-container h-40">
+                        <img src="https://source.unsplash.com/600x400/?deep-cleaning,house" alt="Deep Cleaning" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 id="service1-title" class="text-xl font-bold text-slate-900 mb-2">تنظيف المنازل العميق</h3>
+                        <p id="service1-desc" class="text-slate-500 text-sm leading-relaxed">تنظيف شامل لكل زاوية. فرك، تعقيم، وتلميع الأرضيات والأسطح المخفية.</p>
+                        <div class="mt-4 flex justify-end">
+                            <i data-lucide="arrow-left" class="w-6 h-6 text-blue-600 group-hover:text-blue-800 transition-colors rtl:rotate-180"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service 2: Sofa & Carpet Care -->
+                <div class="glass-panel glass-card-hover rounded-3xl cursor-pointer group overflow-hidden" onclick="window.location.href='https://wa.me/96590900192?text=استفسار%20حول%20خدمة%20العناية%20بالكنب%20والسجاد'">
+                    <div class="img-zoom-container h-40">
+                        <img src="https://source.unsplash.com/600x400/?sofa,carpet,cleaning" alt="Sofa Care" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 id="service2-title" class="text-xl font-bold text-slate-900 mb-2">العناية بالكنب والسجاد</h3>
+                        <p id="service2-desc" class="text-slate-500 text-sm leading-relaxed">استعادة نظافة المفروشات. إزالة البقع، عث الغبار، والروائح الكريهة من الأقمشة.</p>
+                        <div class="mt-4 flex justify-end">
+                            <i data-lucide="arrow-left" class="w-6 h-6 text-indigo-600 group-hover:text-indigo-800 transition-colors rtl:rotate-180"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service 3: Move-In/Move-Out -->
+                <div class="glass-panel glass-card-hover rounded-3xl cursor-pointer group overflow-hidden" onclick="window.location.href='https://wa.me/96590900192?text=استفسار%20حول%20خدمة%20تنظيف%20الانتقال%20(الدخول/الخروج)'">
+                    <div class="img-zoom-container h-40">
+                        <img src="https://source.unsplash.com/600x400/?move-in,cleaning" alt="Move In/Out" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 id="service3-title" class="text-xl font-bold text-slate-900 mb-2">تنظيف الانتقال (الدخول/الخروج)</h3>
+                        <p id="service3-desc" class="text-slate-500 text-sm leading-relaxed">مثالية للمستأجرين والملاك. ضمان نظافة العقار قبل التسليم أو الاستلام.</p>
+                        <div class="mt-4 flex justify-end">
+                            <i data-lucide="arrow-left" class="w-6 h-6 text-cyan-600 group-hover:text-cyan-800 transition-colors rtl:rotate-180"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service 4: Building Maintenance -->
+                <div class="glass-panel glass-card-hover rounded-3xl cursor-pointer group overflow-hidden" onclick="window.location.href='https://wa.me/96590900192?text=استفسار%20حول%20عقود%20صيانة%20المباني'">
+                    <div class="img-zoom-container h-40">
+                        <img src="https://source.unsplash.com/600x400/?building,maintenance,cleaning" alt="Building Maintenance" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 id="service4-title" class="text-xl font-bold text-slate-900 mb-2">صيانة المباني (عقود)</h3>
+                        <p id="service4-desc" class="text-slate-500 text-sm leading-relaxed">عقود تنظيف منتظمة للمجمعات السكنية والمباني التجارية. السلالم، اللوبيات، والنوافذ.</p>
+                        <div class="mt-4 flex justify-end">
+                            <i data-lucide="arrow-left" class="w-6 h-6 text-emerald-600 group-hover:text-emerald-800 transition-colors rtl:rotate-180"></i>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Visual Gallery (Spotless Results) - Actual Images Applied -->
+        <div class="max-w-4xl mx-auto mb-20">
+            <h2 id="section-gallery-title" class="text-2xl font-bold text-slate-900 mb-8 px-2">نتائج خالية من البقع</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 h-96 sm:h-[500px]">
+                <div class="glass-panel rounded-3xl img-zoom-container relative h-64 sm:h-auto">
+                    <!-- Clean Living Room -->
+                    <img src="https://source.unsplash.com/800x1000/?clean-living-room" alt="Clean Living Room" class="w-full h-full object-cover">
+                    <div class="absolute bottom-0 right-0 w-full p-4 bg-gradient-to-t from-black/60 to-transparent text-right">
+                        <p id="gallery-caption1" class="text-white font-medium text-sm">تفاصيل غرفة المعيشة</p>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-4 h-full">
+                    <div class="glass-panel rounded-3xl img-zoom-container relative h-full overflow-hidden">
+                        <!-- Sparkling Kitchen -->
+                        <img src="https://source.unsplash.com/800x500/?sparkling-kitchen" alt="Sparkling Kitchen" class="w-full h-full object-cover">
+                         <div class="absolute bottom-0 right-0 w-full p-4 bg-gradient-to-t from-black/60 to-transparent text-right">
+                            <p id="gallery-caption2" class="text-white font-medium text-sm">تنظيف المطبخ العميق</p>
+                        </div>
+                    </div>
+                    <div class="glass-panel rounded-3xl img-zoom-container relative h-full overflow-hidden">
+                        <!-- Sanitized Office -->
+                        <img src="https://source.unsplash.com/800x500/?sanitized-office" alt="Sanitized Office" class="w-full h-full object-cover">
+                         <div class="absolute bottom-0 right-0 w-full p-4 bg-gradient-to-t from-black/60 to-transparent text-right">
+                            <p id="gallery-caption3" class="text-white font-medium text-sm">تعقيم المكاتب</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Testimonials (Client Reviews) -->
+        <div class="max-w-4xl mx-auto mb-20">
+            <h2 id="section-reviews-title" class="text-2xl font-bold text-slate-900 mb-8 px-2">آراء العملاء</h2>
+            <div class="flex flex-col sm:flex-row gap-4 overflow-x-auto pb-4 snap-x">
+                <!-- Review 1 -->
+                <div class="glass-panel p-6 rounded-3xl min-w-[280px] sm:min-w-[300px] snap-center text-right">
+                    <div class="flex justify-end gap-1 text-yellow-500 mb-3">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p id="review1-text" class="text-slate-600 text-sm italic mb-4">"وصل الفريق في الوقت المحدد وقام بعمل مذهل في فيلتي. تبدو أرضيات الرخام جديدة تمامًا!"</p>
+                    <p id="review1-author" class="text-slate-900 font-bold text-xs">- سارة أ.</p>
+                </div>
+                <!-- Review 2 -->
+                <div class="glass-panel p-6 rounded-3xl min-w-[280px] sm:min-w-[300px] snap-center text-right">
+                    <div class="flex justify-end gap-1 text-yellow-500 mb-3">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p id="review2-text" class="text-slate-600 text-sm italic mb-4">"سوبرفاست تفي بوعدها. حجزت في الساعة 10 صباحًا، وكانوا هنا في الساعة 2 ظهرًا. خدمة ممتازة."</p>
+                    <p id="review2-author" class="text-slate-900 font-bold text-xs">- محمد ك.</p>
+                </div>
+                 <!-- Review 3 -->
+                 <div class="glass-panel p-6 rounded-3xl min-w-[280px] sm:min-w-[300px] snap-center text-right">
+                    <div class="flex justify-end gap-1 text-yellow-500 mb-3">
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+                    </div>
+                    <p id="review3-text" class="text-slate-600 text-sm italic mb-4">"طاقم عمل محترف للغاية. أحضروا جميع معداتهم الخاصة وكانوا محترمين جداً."</p>
+                    <p id="review3-author" class="text-slate-900 font-bold text-xs">- ج. ريتشاردز</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Map Section (Find Us) -->
+        <div class="max-w-4xl mx-auto mb-20">
+            <h2 id="section-map-title" class="text-2xl font-bold text-slate-900 mb-8 px-2">موقعنا</h2>
+            <div class="glass-panel p-2 rounded-[2rem] h-[300px] w-full overflow-hidden">
+                <!-- Map focused on Kuwait City -->
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d111224.23467406148!2d47.88600810793138!3d29.355153676878432!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3fcf8417c8c3e8cd%3A0xc312480a42167c!2sKuwait%20City%2C%20Kuwait!5e0!3m2!1sen!2skw!4v1709400000000!5m2!1sen!2skw" 
+                    width="100%" 
+                    height="100%" 
+                    style="border:0; border-radius: 1.5rem;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+
+        <!-- Quick Contact Card (WhatsApp Only) -->
+        <div class="max-w-4xl mx-auto">
+            <div class="glass-panel rounded-[2rem] p-8 sm:p-12 relative overflow-hidden">
+                <!-- Decorative Blur -->
+                <div class="absolute top-0 left-0 w-64 h-64 bg-blue-400/20 rounded-full blur-3xl -ml-16 -mt-16 pointer-events-none"></div>
+
+                <div class="relative z-10 text-center sm:text-right flex flex-col sm:flex-row items-center justify-between gap-8">
+                    <div class="text-right">
+                        <h2 id="cta-title" class="text-2xl font-bold text-slate-900 mb-2">هل أنت جاهز لمساحة أنظف؟</h2>
+                        <p id="cta-subtitle" class="text-slate-600">مفتوح 24 ساعة • استجابة سريعة</p>
+                    </div>
+                    
+                    <div class="flex flex-col gap-3 w-full sm:w-auto">
+                        <!-- Primary WhatsApp CTA -->
+                        <a href="https://wa.me/96590900192?text=أريد%20الاستفسار%20عن%20التكاليف%20وحجز%20خدمة." class="bg-[#25D366] hover:bg-[#1dbf57] text-white px-8 py-3 rounded-xl font-semibold flex items-center justify-center gap-2 transition-all shadow-lg shadow-green-400/20">
+                            <span id="cta-whatsapp-primary">تحدث عبر الواتساب</span>
+                            <i data-lucide="message-circle" class="w-5 h-5"></i>
+                        </a>
+                        <!-- Secondary WhatsApp CTA (Focus on instant service) -->
+                        <a href="https://wa.me/96590900192?text=أريد%20خدمة%20عاجلة%20الآن." class="bg-white/50 hover:bg-white text-slate-900 px-8 py-3 rounded-xl font-medium flex items-center justify-center gap-2 transition-all border border-white/60">
+                            <span id="cta-whatsapp-secondary">اطلب خدمة فورية (واتساب)</span>
+                            <i data-lucide="zap" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="mt-8 pt-8 border-t border-slate-200/50 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-slate-500">
+                    <div class="flex items-center gap-2">
+                        <i data-lucide="clock" class="w-4 h-4"></i>
+                        <span id="footer-status">مفتوح دائماً (24/7)</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <i data-lucide="map-pin" class="w-4 h-4"></i>
+                        <span id="footer-location">قطعة 10،, Kuwait City, Kuwait</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Floating Footer/Copyright -->
+    <footer class="text-center pb-8 text-slate-400 text-xs">
+        <p id="footer-copyright">&copy; 2024 Superfast Cleaning Services. جميع الحقوق محفوظة.</p>
+    </footer>
+
+    <!-- Initializer for Icons and Scripts for Language Toggle -->
+    <script>
+        lucide.createIcons();
+
+        // --- Translation Data ---
+        const translations = {
+            ar: {
+                // Nav
+                'doc-title': 'سوبرفاست لخدمات التنظيف | الكويت',
+                'nav-title': 'سوبرفاست',
+                'nav-subtitle': 'لخدمات التنظيف SUPERFAST',
+                'nav-whatsapp-btn': 'واتساب',
+                'tagline': 'مفتوح 24/7 في مدينة الكويت',
+                // Hero
+                'hero-title-1': 'مساحات نقية.',
+                'hero-title-2': 'جهد صفري.',
+                'hero-subtitle-1': 'شركة سوبرفاست لخدمات التنظيف العام للمباني',
+                'hero-subtitle-2': 'خدمات تنظيف منازل ممتازة مقدمة بسرعة ودقة فائقة.',
+                'hero-book-btn': 'احجز الآن عبر واتساب',
+                // Why Choose Us
+                'section-why-title1': 'متوفر 24/7',
+                'section-why-desc1': 'نعمل وفق جدولك، ليلاً ونهاراً في الكويت.',
+                'section-why-title2': 'طاقم عمل موثوق',
+                'section-why-desc2': 'متخصصون مدربون وذوو كفاءة عالية.',
+                'section-why-title3': 'خدمة فائقة السرعة',
+                'section-why-desc3': 'الحجز في نفس اليوم متاح عبر الواتساب.',
+                // Services
+                'section-services-main-title': 'خدماتنا الممتازة',
+                'service1-title': 'تنظيف المنازل العميق',
+                'service1-desc': 'تنظيف شامل لكل زاوية. فرك، تعقيم، وتلميع الأرضيات والأسطح المخفية.',
+                'service2-title': 'العناية بالكنب والسجاد',
+                'service2-desc': 'استعادة نظافة المفروشات. إزالة البقع، عث الغبار، والروائح الكريهة من الأقمشة.',
+                'service3-title': 'تنظيف الانتقال (الدخول/الخروج)',
+                'service3-desc': 'مثالية للمستأجرين والملاك. ضمان نظافة العقار قبل التسليم أو الاستلام.',
+                'service4-title': 'صيانة المباني (عقود)',
+                'service4-desc': 'عقود تنظيف منتظمة للمجمعات السكنية والمباني التجارية. السلالم، اللوبيات، والنوافذ.',
+                // Gallery
+                'section-gallery-title': 'نتائج خالية من البقع',
+                'gallery-caption1': 'تفاصيل غرفة المعيشة',
+                'gallery-caption2': 'تنظيف المطبخ العميق',
+                'gallery-caption3': 'تعقيم المكاتب',
+                // Reviews
+                'section-reviews-title': 'آراء العملاء',
+                'review1-text': '"وصل الفريق في الوقت المحدد وقام بعمل مذهل في فيلتي. تبدو أرضيات الرخام جديدة تمامًا!"',
+                'review1-author': '- سارة أ.',
+                'review2-text': '"سوبرفاست تفي بوعدها. حجزت في الساعة 10 صباحًا، وكانوا هنا في الساعة 2 ظهرًا. خدمة ممتازة."',
+                'review2-author': '- محمد ك.',
+                'review3-text': '"طاقم عمل محترف للغاية. أحضروا جميع معداتهم الخاصة وكانوا محترمين جداً."',
+                'review3-author': '- ج. ريتشاردز',
+                // CTA Footer
+                'section-map-title': 'موقعنا',
+                'cta-title': 'هل أنت جاهز لمساحة أنظف؟',
+                'cta-subtitle': 'مفتوح 24 ساعة • استجابة سريعة',
+                'cta-whatsapp-primary': 'تحدث عبر الواتساب',
+                'cta-whatsapp-secondary': 'اطلب خدمة فورية (واتساب)',
+                'footer-status': 'مفتوح دائماً (24/7)',
+                'footer-location': 'قطعة 10،, Kuwait City, Kuwait',
+                'footer-copyright': '&copy; 2024 Superfast Cleaning Services. جميع الحقوق محفوظة.',
+                // Toggle Button
+                'lang-btn-text': 'English'
+            },
+            en: {
+                // Nav
+                'doc-title': 'Superfast Cleaning Services | Kuwait',
+                'nav-title': 'Superfast',
+                'nav-subtitle': 'CLEANING SERVICES SUPERFAST',
+                'nav-whatsapp-btn': 'WhatsApp',
+                'tagline': 'OPEN 24/7 IN KUWAIT CITY',
+                // Hero
+                'hero-title-1': 'Pristine Spaces.',
+                'hero-title-2': 'Zero Effort.',
+                'hero-subtitle-1': 'Superfast General Building Cleaning Services',
+                'hero-subtitle-2': 'Excellent home cleaning services delivered with speed and high precision.',
+                'hero-book-btn': 'Book Now via WhatsApp',
+                // Why Choose Us
+                'section-why-title1': 'Available 24/7',
+                'section-why-desc1': 'We work according to your schedule, day and night in Kuwait.',
+                'section-why-title2': 'Reliable Staff',
+                'section-why-desc2': 'Trained and highly competent specialists.',
+                'section-why-title3': 'Ultra-Fast Service',
+                'section-why-desc3': 'Same-day booking is available via WhatsApp.',
+                // Services
+                'section-services-main-title': 'Our Excellent Services',
+                'service1-title': 'Deep House Cleaning',
+                'service1-desc': 'Comprehensive cleaning of every corner.',
+                'service2-title': 'Sofa & Carpet Care',
+                'service2-desc': 'Restoring upholstery cleanliness.',
+                'service3-title': 'Move-In/Move-Out Cleaning',
+                'service3-desc': 'Ideal for tenants and landlords.',
+                'service4-title': 'Building Maintenance (Contracts)',
+                'service4-desc': 'Regular cleaning contracts for residential complexes and commercial buildings.',
+                // Gallery
+                'section-gallery-title': 'Spotless Results',
+                'gallery-caption1': 'Living Room Details',
+                'gallery-caption2': 'Deep Kitchen Clean',
+                'gallery-caption3': 'Sanitized Offices',
+                // Reviews
+                'section-reviews-title': 'Client Reviews',
+                'review1-text': '"The team arrived ..."',
+                'review1-author': '- Sara A.',
+                'review2-text': '"Superfast delivers ..."',
+                'review2-author': '- Mohammed K.',
+                'review3-text': '"Extremely professional staff ..."',
+                'review3-author': '- J. Richards',
+                // CTA Footer
+                'section-map-title': 'Our Location',
+                'cta-title': 'Ready for a cleaner space?',
+                'cta-subtitle': 'Open 24 hours • Quick response',
+                'cta-whatsapp-primary': 'Chat via WhatsApp',
+                'cta-whatsapp-secondary': 'Request Immediate Service (WhatsApp)',
+                'footer-status': 'Always Open (24/7)',
+                'footer-location': 'Block 10, Kuwait City, Kuwait',
+                'footer-copyright': '&copy; 2024 Superfast Cleaning Services. All rights reserved.',
+                // Toggle Button
+                'lang-btn-text': 'العربية'
+            }
+        };
+
+        let currentLang = document.documentElement.lang;
+
+        function updateContent(lang) {
+            const currentData = translations[lang];
+            document.documentElement.setAttribute('lang', lang);
+            document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+            document.body.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+            for (const id in currentData) {
+                const element = document.getElementById(id);
+                if (element) {
+                    if (id === 'lang-btn-text') {
+                         element.textContent = currentData[id];
+                    } else if (id === 'doc-title') {
+                        document.title = currentData[id];
+                    } else {
+                        element.textContent = currentData[id];
+                    }
+                }
+            }
+            document.getElementById('lang-toggle-btn').textContent = currentData['lang-btn-text'];
+            lucide.createIcons();
+        }
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'ar' ? 'en' : 'ar';
+            updateContent(currentLang);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const elements = document.querySelectorAll('.glass-panel');
+            elements.forEach((el, index) => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                    el.style.opacity = '1';
+                    el.style.transform = '0';
+                }, 100 * index);
+            });
+            updateContent(currentLang);
+        });
+    </script>
+</body>
+</html>
